@@ -5,8 +5,8 @@ function randomTime() {
 function seleccionarArchivo() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      const archivoSeleccionado = archivo; 
-      console.log('Archivo seleccionado: ' + archivoSeleccionado); // Cambio aquí: usa la variable 'archivo
+      const archivoSeleccionado = archivo;
+      console.log('Archivo seleccionado: ' + archivoSeleccionado);
       resolve(archivoSeleccionado);
     }, randomTime());
   });
@@ -44,15 +44,15 @@ function cargarArchivo(nombreArchivo, tamañoAceptable) {
   });
 }
 
-const archivo = "archivo.txt"; 
+const archivo = "archivo.txt";
 
+const botonSubir = document.getElementById('subir'); 
 
-
-archivo.addEventListener('click', () => {
+botonSubir.addEventListener('click', () => {
   seleccionarArchivo()
     .then(nombreArchivo => verificarFormato(nombreArchivo))
-    .then(formatoValido => verificarTamaño(formatoValido)) 
-    .then(tamañoAceptable => cargarArchivo(nombreArchivo, tamañoAceptable)) 
+    .then(formatoValido => verificarTamaño(archivo, formatoValido))
+    .then(tamañoAceptable => cargarArchivo(archivo, tamañoAceptable))
     .then(resultado => console.log(resultado))
     .catch(error => console.error(error));
 });
